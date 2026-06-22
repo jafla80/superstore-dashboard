@@ -9,9 +9,9 @@ st.set_page_config(page_title="Superstore Dashboard",page_icon="📊",layout="wi
 
 @st.cache_data
 def load_data():
-    df=pd.read_csv(r"C:\Users\jafla\Downloads\Superstore_Sales\output\Superstore_clean.csv",parse_dates=["Order Date","Ship Date"])
+    df=pd.read_csv("data\Superstore_clean.csv",parse_dates=["Order Date","Ship Date"])
     return df
-
+#load data
 
 df=load_data()
 
@@ -39,7 +39,7 @@ if submitted:
     filtered["Order Date"].dt.date.between(start, end)
 ]
 
-
+st.sidebar.divider()
 csv_bytes= df.to_csv(index=False).encode("utf-8")
 st.sidebar.download_button(
     "Download filtered data",
